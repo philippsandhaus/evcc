@@ -99,10 +99,10 @@ func (v *API) Accounts() ([]string, error) {
 // Pointers distinguish an absent value from a reported zero.
 type socStatus struct {
 	StateOfCharge struct {
-		Value *jsonFloat
+		Value *jsonFloat `scalar:"true"`
 	}
 	StateOfChargeLimit struct {
-		UpperSocLimit *jsonFloat
+		UpperSocLimit *jsonFloat `scalar:"true"`
 	}
 }
 
