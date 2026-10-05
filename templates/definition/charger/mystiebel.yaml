@@ -1,0 +1,45 @@
+template: mystiebel
+products:
+  - brand: Stiebel Eltron
+    description:
+      generic: Heatpump (MyStiebel Cloud)
+group: heating
+requirements:
+  evcc: ["skiptest"]
+  description:
+    de: |
+      Steuerung der Warmwasserbereitung über die MyStiebel Cloud-API (wss://serviceapi.mystiebel.com).
+      Erfordert einen MyStiebel-Account und die MyStiebel App.
+    en: |
+      Controls domestic hot water (DHW) boost via the MyStiebel cloud API (wss://serviceapi.mystiebel.com).
+      Requires a MyStiebel account and the MyStiebel app.
+params:
+  - name: user
+    required: true
+    description:
+      de: MyStiebel Benutzername (E-Mail)
+      en: MyStiebel username (e-mail)
+  - name: password
+    required: true
+    mask: true
+    description:
+      de: MyStiebel Passwort
+      en: MyStiebel password
+  - name: clientid
+    description:
+      de: Client-UUID (wird automatisch generiert, falls leer)
+      en: Client UUID (auto-generated if empty)
+    advanced: true
+  - name: installation_id
+    description:
+      de: Installations-ID (wird automatisch ermittelt, wenn nur eine Anlage vorhanden)
+      en: Installation ID (auto-detected when only one installation exists)
+    advanced: true
+render: |
+  type: mystiebel
+  user: {{ .user }}
+  password: {{ .password }}
+  clientid: {{ .clientid }}
+  {{- if .installation_id }}
+  installationid: {{ .installation_id }}
+  {{- end }}
